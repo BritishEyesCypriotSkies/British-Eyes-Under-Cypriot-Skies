@@ -81,5 +81,12 @@ const lb=document.getElementById('lightbox'), lbImg=document.getElementById('lig
 document.querySelectorAll('.tile img').forEach(img=>img.addEventListener('click',()=>{lbImg.src=img.src;lbImg.alt=img.alt;lbCap.textContent=img.closest('.tile').querySelector('h3').textContent;lb.classList.add('open')}));
 function closeLb(){lb.classList.remove('open');lbImg.src=''}
 document.getElementById('closeLightbox').addEventListener('click',closeLb);lb.addEventListener('click',e=>{if(e.target===lb)closeLb()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb()});
-</script>
+</script><section style="text-align:center; padding:40px 20px;">
+    <h2>Get in Touch</h2>
+    <p>Have a question about my astrophotography? I'd love to hear from you.</p>
+    <a href="mailto:garse1968@yahoo.com"
+       style="display:inline-block; padding:12px 24px; background:#7c6cff; color:white; text-decoration:none; border-radius:8px;">
+      Contact Me
+    </a>
+  </section>
 </body></html>
