@@ -197,7 +197,7 @@ document.querySelectorAll('.tile img').forEach(img => {
     document.getElementById('detailTitle').textContent =
       tile.querySelector('h3')?.textContent || '';
     document.getElementById('detailCategory').textContent =
-      tile.querySelector('tag')?.textContent || tile.dataset.category || '';
+      tile.querySelector('.tag')?.textContent || tile.dataset.category || '';
     document.getElementById('detailDate').textContent =
       tile.dataset.date ? 'Date: ' + tile.dataset.date : '';
     document.getElementById('detailLocation').textContent =
@@ -206,18 +206,18 @@ document.querySelectorAll('.tile img').forEach(img => {
       tile.dataset.equipment ? 'Equipment: ' + tile.dataset.equipment : '';
     document.getElementById('detailExposure').textContent =
       tile.dataset.exposure ? 'Exposure: ' + tile.dataset.exposure : '';
-    document.getElementById('detailConstellation').textContent =
-      tile.dataset.Constellation ? 'Constellation: ' + tile.dataset.constellation : '';
+    document.getElementById('detailConstellatio').textContent =
+      tile.dataset.constellation ? 'Constellation: ' + tile.dataset.constellation : '';
     document.getElementById('detailNotes').textContent =
       tile.dataset.notes || '';
     lb.classList.add('open');
   });
 });
 function closeLb() {
-  lb.classlist.remove('open');
+  lb.classList.remove('open');
   lbImg.src = '';
 }
-document.getElementById('closelightbox').addEventListener('click', closeLb);
+document.getElementById('closeLightbox').addEventListener('click', closeLb);
 lb.addEventListener('click', e => {
   if (e.target === lb) closeLb();
 });
