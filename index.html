@@ -122,7 +122,14 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
     <button class="filter active" data-filter="All">All images</button><button class="filter" data-filter="Galaxies">Galaxies</button><button class="filter" data-filter="Nebulae">Nebulae</button><button class="filter" data-filter="Star clusters">Star clusters</button><button class="filter" data-filter="Solar System">Solar System</button>
   </div>
   <div class="gallery" id="galleryGrid">
-    <article class="tile" data-category="Nebulae"><img loading="lazy" src="IMG_1953.jpeg" alt="M27 Dumbbell Nebula photographed from Mandria, Paphos"><div class="tile-info"><div class="tag">Nebulae  .  Planetary Nebula</div><h3>M27 - The Dumbell Nebula</h3><p>Captured from Cyprus using ZWO Seestar S50 Pro.</p></div></article>
+    <article class="tile" data-category="Nebulae"
+      data-date="1st November 2026"
+      data-location="Mandria, Paphos, Cyprus"
+      data-equipment="ZWO Seestar S50 Pro"
+      data-exposure="123 x 10sec subs (20.5minutes total exposure)"
+      data-constellation="Vulpecula"
+      data-notes="M27 is a Planetary Nebula with a distictive blue/green central structure and warmer outer regions that stand out against the surrounding star field. It was first discovered by Charles Messier in 1764. It is 1360 light-years from earth meaning the light that was captured during the photographine of this nebulae has been travelling towards earth since the year 666AD"
+    ><img loading="lazy" src="IMG_1953.jpeg" alt="M27 Dumbbell Nebula photographed from Mandria, Paphos"><div class="tile-info"><div class="tag">Nebulae  .  Planetary Nebula</div><h3>M27 - The Dumbell Nebula</h3><p>Captured from Cyprus using ZWO Seestar S50 Pro.</p></div></article>
     <article class="tile" data-category="Galaxies"><img loading="lazy" src="https://images.unsplash.com/photo-1464802686167-b939a6910659?auto=format&fit=crop&w=900&q=80" alt="Deep space galaxy and stars"><div class="tile-info"><div class="tag">Example image · Galaxies</div><h3>Island universes</h3><p>Billions of stars, gathered across immense distances.</p></div></article>
     <article class="tile" data-category="Star clusters"><img loading="lazy" src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=900&q=80" alt="Starry sky above Earth"><div class="tile-info"><div class="tag">Example image · Star clusters</div><h3>Stardust fields</h3><p>A placeholder for your favourite cluster images.</p></div></article>
     <article class="tile" data-category="Solar System"><img loading="lazy" src="https://images.unsplash.com/photo-1614732484003-ef9881555dc3?auto=format&fit=crop&w=900&q=80" alt="Planet Jupiter"><div class="tile-info"><div class="tag">Example image · Solar System</div><h3>Our planetary neighbours</h3><p>Planets, the Moon and other nearby wonders.</p></div></article>
@@ -145,18 +152,78 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
 </div></section>
 </main>
 <footer><div class="wrap foot"><span>© <span id="year"></span> British Eyes Through Cypriot Skies</span><span>Made for curious minds beneath dark skies.</span></div></footer>
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer"><button class="close" id="closeLightbox">Close ✕</button><img id="lightboxImg" alt=""><div class="caption" id="lightboxCaption"></div></div>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="close" id="closeLightbox">Close ✕</button>
+  <div class="lightbox-panel">
+    <img id="lightboxImg" alt="">
+    <div class="lightbox-details">
+      <div class="caption" id="lightboxCaption"></div>
+  <h2 id="detailTitle"></h2>
+  <h3 id="detailCategory"></h3>
+  <p id="detailDate"></p>
+  <p id="detailLocation"></p>
+  <p id="detailEquipment"></p>
+  <p id="detailExposure"></p>
+  <p id="detailConstellatio"></p>
+  <p id="detailNotes"></p>
+</div></div>
+</div>
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
-document.querySelectorAll('.filter').forEach(btn => btn.addEventListener('click', () => {
-  document.querySelectorAll('.filter').forEach(b => b.classList.remove('active')); btn.classList.add('active');
-  document.querySelectorAll('.tile').forEach(tile => tile.style.display = (btn.dataset.filter === 'All' || tile.dataset.category === btn.dataset.filter) ? '' : 'none');
-}));
-const lb=document.getElementById('lightbox'), lbImg=document.getElementById('lightboxImg'), lbCap=document.getElementById('lightboxCaption');
-document.querySelectorAll('.tile img').forEach(img=>img.addEventListener('click',()=>{lbImg.src=img.src;lbImg.alt=img.alt;lbCap.textContent=img.closest('.tile').querySelector('h3').textContent;lb.classList.add('open')}));
-function closeLb(){lb.classList.remove('open');lbImg.src=''}
-document.getElementById('closeLightbox').addEventListener('click',closeLb);lb.addEventListener('click',e=>{if(e.target===lb)closeLb()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb()});
-</script><section style="text-align:center; padding:40px 20px;">
+document.querySelectorAll('.filter').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.tile').forEach(tile => {
+      tile.style.display =
+        btn.dataset.filter === 'All' ||
+        tile.dataset.category === btn.dataset.filter
+        ? ''
+        : 'none';
+    });
+  });
+});
+const 1b = document.getElementById('lightbox');
+const 1bImg = document.getElementById('lightboxImg');
+const 1bCap = document.getElementById('lightboxCaption');
+document.querySelectorAll('.tile img').forEach(img => {
+  img.addEventListener('click', ()=> {
+    const tile = img.closest('.tile');
+    1bImg.src = img.src;
+    1bImg.alt = img.alt;
+    1bCap.textContent = img.alt;
+    document.getElementById('detailTitle').textContent =
+      tile.querySelector('h3')?.textContent || '';
+    document.getElementById('detailCategory').textContent =
+      tile.querySelector('tag')?.textContent || tile.dataset.category || '';
+    document.getElementById('detailDate').textContent =
+      tile.dataset.date ? 'Date: ' + tile.dataset.date : '';
+    document.getElementById('detailLocation').textContent =
+      tile.dataset.location ? 'Location: ' + tiledatasetlocation : '';
+    document.getElementById('detailEquipment').textContent =
+      tile.dataset.equipment ? 'Equipment: ' + tile.dataset.equipment : '';
+    document.getElementById('detailExposure').textContent =
+      tile.dataset.exposure ? 'Exposure: ' + tile.dataset.exposure : '';
+    document.getElementById('detailConstellation').textContent =
+      tile.dataset.Constellation ? 'Constellation: ' + tile.dataset.constellation : '';
+    document.getElementById('detailNotes').textContent =
+      tile.dataset.notes || '';
+    1b.classList.add('open');
+  });
+});
+function closeLb() {
+  1b.classlist.remove('open');
+  1bImg.src = '';
+}
+document.getElementById('closelightbox').addEventListener('click', closeLb);
+1b.addEventListener('click', e => {
+  if (e.target === 1b) closeLb();
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLb();
+});
+      
+</script>
+<section style="text-align:center; padding:40px 20px;">
     <h2>Get in Touch</h2>
     <p>Have a question about my astrophotography? I'd love to hear from you.</p>
     <a href="mailto:garse1968@yahoo.com"
