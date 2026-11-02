@@ -185,15 +185,15 @@ document.querySelectorAll('.filter').forEach(btn => {
     });
   });
 });
-const 1b = document.getElementById('lightbox');
-const 1bImg = document.getElementById('lightboxImg');
-const 1bCap = document.getElementById('lightboxCaption');
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lightboxImg');
+const lbCap = document.getElementById('lightboxCaption');
 document.querySelectorAll('.tile img').forEach(img => {
   img.addEventListener('click', ()=> {
     const tile = img.closest('.tile');
-    1bImg.src = img.src;
-    1bImg.alt = img.alt;
-    1bCap.textContent = img.alt;
+    lbImg.src = img.src;
+    lbImg.alt = img.alt;
+    lbCap.textContent = img.alt;
     document.getElementById('detailTitle').textContent =
       tile.querySelector('h3')?.textContent || '';
     document.getElementById('detailCategory').textContent =
@@ -210,16 +210,16 @@ document.querySelectorAll('.tile img').forEach(img => {
       tile.dataset.Constellation ? 'Constellation: ' + tile.dataset.constellation : '';
     document.getElementById('detailNotes').textContent =
       tile.dataset.notes || '';
-    1b.classList.add('open');
+    lb.classList.add('open');
   });
 });
 function closeLb() {
-  1b.classlist.remove('open');
-  1bImg.src = '';
+  lb.classlist.remove('open');
+  lbImg.src = '';
 }
 document.getElementById('closelightbox').addEventListener('click', closeLb);
-1b.addEventListener('click', e => {
-  if (e.target === 1b) closeLb();
+lb.addEventListener('click', e => {
+  if (e.target === lb) closeLb();
 });
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') closeLb();
