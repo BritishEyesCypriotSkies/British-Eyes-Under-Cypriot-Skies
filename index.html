@@ -58,8 +58,8 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
 .lightbox-panel {
   display: grid;
   grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr);
-  gap: 28px
-  width: mon(1200px, 94vw);
+  gap: 28px;
+  width: min(1200px, 94vw);
   max-height: 85vh;
   align-items: center;
   text-align: left;
@@ -200,7 +200,7 @@ document.querySelectorAll('.tile img').forEach(img => {
     document.getElementById('detailDate').textContent =
       tile.dataset.date ? 'Date: ' + tile.dataset.date : '';
     document.getElementById('detailLocation').textContent =
-      tile.dataset.location ? 'Location: ' + tiledatasetlocation : '';
+      tile.dataset.location ? 'Location: ' + tile.dataset.location : '';
     document.getElementById('detailEquipment').textContent =
       tile.dataset.equipment ? 'Equipment: ' + tile.dataset.equipment : '';
     document.getElementById('detailExposure').textContent =
