@@ -28,21 +28,41 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
 .lightbox{position:fixed;inset:0;background:#02040af2;z-index:30;display:none;align-items:center;justify-content:center;padding:24px}.lightbox.open{display:flex}.lightbox img{max-width:min(1100px,90vw);max-height:78vh;object-fit:contain}.lightbox .close{position:absolute;right:24px;top:18px;background:transparent;border:1px solid #ffffff66;color:white;padding:8px 13px;cursor:pointer}.lightbox .caption{position:absolute;bottom:14px;text-align:center;color:#d7e0f0}
 @media(max-width:760px){.nav{align-items:flex-start;flex-direction:column}.hero{min-height:520px}.gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.about-grid{grid-template-columns:1fr}.about-art{min-height:230px}.equipment{grid-template-columns:1fr}.section-head{display:block}}
 @media(max-width:480px){nav{gap:13px}.gallery{grid-template-columns:1fr}.hero-content{padding:78px 0 60px}}
-.brand img {
-  display: block;
-  width: 100%;
-  max-width: 420px;
-  height: auto;
+.header-inner {
+  width: min(1160px, 92vw);
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 0;
+  gap: 10px:
 }
+    .brand {
+      text-align: center;
+    }
+    .brand img {
+      display: block;
+      width: 100%;
+      max-width: 250px;
+      height: auto;
+      margin: 0 auto;
+    }
+    .header-inner nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
   </style>
 </head>
 <body>
-<header><div class="wrap nav">
+<header><div class="header-inner">
   <div class="brand">
     <a href="./">
       <img src="01-main-website-logo-high-resolution.png" alt="British Eyes Through Cypriot Skies">
     </a>
-  </div><small>Astrophotography · Cyprus</small></div>
+  <small>Astrophotography · Cyprus</small></div>
   <nav aria-label="Main navigation"><a href="#gallery">Gallery</a><a href="#about">About</a><a href="#equipment">Equipment</a></nav>
 </div></header>
 <main>
