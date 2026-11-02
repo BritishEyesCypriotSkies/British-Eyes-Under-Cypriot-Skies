@@ -54,7 +54,51 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
       gap: 35px;
       flex-wrap: wrap;
     }
-  </style>
+  /* Astrophotography image details panel */
+.lightbox-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr);
+  gap: 28px
+  width: mon(1200px, 94vw);
+  max-height: 85vh;
+  align-items: center;
+  text-align: left;
+}
+.lightbox-panel img {
+  width: 100%;
+  max-width: 100%;
+  max-height: 78vh;
+  object-fit: contain;
+}
+.lightbox-details {
+  background: #101827;
+  border: 1px solid #26344b;
+  border radius: 12px;
+  padding: 24px;
+  color: #edf3ff;
+  overflow-y: auto;
+}
+.lightbox-details h2 {
+  font-family: Georgia, serif;
+  color: #e8d4a4;
+  margin-top: 0;
+}
+  .lightbox-details h3 {
+    color: #9ac8ff;
+    margin-bottom: 8px;}
+  .lightbox-details p {
+    line-height: 1.7;
+    color: #d8e2f4:
+  }
+  @media(max-width:760px) {
+    .lightbox-panel {
+      grid-template-columns: 1fr;
+      overflow-y: auto;
+    }
+    lightbox-panel img {
+      max-height: 45vh;
+    }
+</style>
 </head>
 <body>
 <header><div class="header-inner">
